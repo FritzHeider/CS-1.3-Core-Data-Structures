@@ -2,7 +2,7 @@
 
 import string
 # Hint: Use these string constants to encode/decode hexadecimal digits and more
-# string.digits is '0123456789'
+string.digits is '0123456789'
 # string.hexdigits is '0123456789abcdefABCDEF'
 # string.ascii_lowercase is 'abcdefghijklmnopqrstuvwxyz'
 # string.ascii_uppercase is 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
@@ -23,6 +23,7 @@ def decode(digits, base):
     # ...
     # TODO: Decode digits from any base (2 up to 36)
     # ...
+
 
 
 def encode(number, base):

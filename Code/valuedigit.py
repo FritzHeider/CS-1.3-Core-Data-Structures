@@ -34,4 +34,4 @@ def convert(value):
         i = i *16 + hexa_to_dec[key]
     return i
 
-print(convert('FF'))
+print(convert('16'))
