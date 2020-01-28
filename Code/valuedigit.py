@@ -28,10 +28,10 @@ hexa_to_dec = {
     "E": 14,
     "F": 15
 }
-def convert(value):
+def convert(value, base):
     i = 0
     for key in value:
-        i = i *16 + hexa_to_dec[key]
+        i = i * base + hexa_to_dec[key]
     return i
 
-print(convert('16'))
+print(convert('10110', 2))

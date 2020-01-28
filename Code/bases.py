@@ -8,7 +8,24 @@ string.digits is '0123456789'
 # string.ascii_uppercase is 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 # string.ascii_letters is ascii_lowercase + ascii_uppercase
 # string.printable is digits + ascii_letters + punctuation + whitespace
-
+hexa_to_dec = {
+    "0": 0,
+    "1": 1,
+    "2": 2,
+    "3": 3,
+    "4": 4,
+    "5": 5,
+    "6": 6,
+    "7": 7,
+    "8": 8,
+    "9": 9,
+    "A": 10,
+    "B": 11,
+    "C": 12,
+    "D": 13,
+    "E": 14,
+    "F": 15
+}
 
 def decode(digits, base):
     """Decode given digits in given base to number in base 10.
@@ -24,7 +41,10 @@ def decode(digits, base):
     # TODO: Decode digits from any base (2 up to 36)
     # ...
 
-
+    i = 0
+    for key in digits:
+        i = i * base + hexa_to_dec[key]
+    return i
 
 def encode(number, base):
     """Encode given number in base 10 to digits in given base.
