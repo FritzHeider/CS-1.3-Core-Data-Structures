@@ -27,13 +27,13 @@ hexa_to_dec = {
     "F": 15
 }
 
-def decode(digits, base):
+def decode(digits, base1):
     """Decode given digits in given base to number in base 10.
     digits: str -- string representation of number (in given base)
     base: int -- base of given number
     return: int -- integer representation of number (in base 10)"""
     # Handle up to base 36 [0-9a-z]
-    assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
+    assert 2 <= base1 <= 36, 'base is out of range: {}'.format(base)
     # TODO: Decode digits from binary (base 2)
     # ...
     # TODO: Decode digits from hexadecimal (base 16)
@@ -43,7 +43,7 @@ def decode(digits, base):
 
     i = 0
     for key in digits:
-        i = i * base + hexa_to_dec[key]
+        i = i * base1 + hexa_to_dec[key]
     return i
 
 def encode(number, base):
@@ -84,19 +84,19 @@ def convert(digits, base1, base2):
 
 def main():
     """Read command-line arguments and convert given digits between bases."""
-    import sys
-    args = sys.argv[1:]  # Ignore script file name
-    if len(args) == 3:
-        digits = args[0]
-        base1 = int(args[1])
-        base2 = int(args[2])
-        # Convert given digits between bases
-        result = convert(digits, base1, base2)
-        print('{} in base {} is {} in base {}'.format(digits, base1, result, base2))
-    else:
-        print('Usage: {} digits base1 base2'.format(sys.argv[0]))
-        print('Converts digits from base1 to base2')
-
+    # import sys
+    # args = sys.argv[1:]  # Ignore script file name
+    # if len(args) == 3:
+    #     digits = args[0]
+    #     base1 = int(args[1])
+    #     base2 = int(args[2])
+    #     # Convert given digits between bases
+    #     result = convert(digits, base1, base2)
+    #     print('{} in base {} is {} in base {}'.format(digits, base1, result, base2))
+    # else:
+    #     print('Usage: {} digits base1 base2'.format(sys.argv[0]))
+    #     print('Converts digits from base1 to base2')
+    print(decode(100101, 2))
 
 if __name__ == '__main__':
     main()
