@@ -1,102 +1,132 @@
 #!python
 
 import string
+import math
 # Hint: Use these string constants to encode/decode hexadecimal digits and more
-string.digits is '0123456789'
+# string.digits is '0123456789'
 # string.hexdigits is '0123456789abcdefABCDEF'
 # string.ascii_lowercase is 'abcdefghijklmnopqrstuvwxyz'
 # string.ascii_uppercase is 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 # string.ascii_letters is ascii_lowercase + ascii_uppercase
 # string.printable is digits + ascii_letters + punctuation + whitespace
-hexa_to_dec = {
-    "0": 0,
-    "1": 1,
-    "2": 2,
-    "3": 3,
-    "4": 4,
-    "5": 5,
-    "6": 6,
-    "7": 7,
-    "8": 8,
-    "9": 9,
-    "A": 10,
-    "B": 11,
-    "C": 12,
-    "D": 13,
-    "E": 14,
-    "F": 15
-}
 
-def decode(digits, base1):
-    """Decode given digits in given base to number in base 10.
-    digits: str -- string representation of number (in given base)
-    base: int -- base of given number
-    return: int -- integer representation of number (in base 10)"""
-    # Handle up to base 36 [0-9a-z]
-    assert 2 <= base1 <= 36, 'base is out of range: {}'.format(base)
-    # TODO: Decode digits from binary (base 2)
-    # ...
-    # TODO: Decode digits from hexadecimal (base 16)
-    # ...
-    # TODO: Decode digits from any base (2 up to 36)
-    # ...
+def letter_to_num(digit):
+    letters = list(string.ascii_lowercase)
+    # checks if digit is a letter
+    if digit in letters:
+        for i in range(len(letters)):
+            if digit.lower() == letters[i]:
+                return 10 + i
+    # if number is 0-9 return its value
+    else:
+        return float(digit)
 
-    i = 0
-    for key in digits:
-        i = i * base1 + hexa_to_dec[key]
-    return i
+
+def dec_for_whole_num(digits, base):
+    final_value = 0
+    leng = len(digits)
+    for i in range(leng):
+        next = digits[i]
+        if not next == '.':
+            decimal_value_of_single_digit = float(
+                letter_to_num(next))
+            final_value += (
+                math.pow(base, (leng - 1)) * decimal_value_of_single_digit)
+            # move down the exp for the next iteration
+            leng -= 1
+        else:
+            pass
+    return final_value
+
+def decode_from_any_base(digits, base, decoded):
+    if '.' in digits:
+        index = digits.index('.')
+        int_portion = digits[:index]
+        fractional = digits[index:]
+        if not int_portion == '0':
+            decoded += dec_for_whole_num(int_portion, base)
+
+            digits = '0' + fractional
+
+            return decode_from_any_base(digits, base, decoded)
+        elif not fractional == '.0':
+            decoded += dec_for_frac_num(digits, base)
+            return decoded
+    else:
+        return int(dec_for_whole_num(digits, base))
+
+
+def decode(digits, base):
+
+    assert 2 <= base <= 36, 'base is unacceptable {}'.format(base)
+    decoded = 0
+    return decode_from_any_base(digits, base, decoded)
+
+def whole_num_leng(number, base):
+    exp = 0
+    pow = -1
+    while pow <= number:
+        exp += 1
+        pow = math.pow(base, exp)
+    return (exp)
+
+def get_equivalent_for_integers(number, base, new_num_leng):
+    new_value = ''
+    letters = list(string.ascii_lowercase)
+    for i in range(new_num_leng):
+        place = math.pow(base, (new_num_leng - (i + 1)))
+        next_num = int(number // place)
+        if next_num > 9:
+            index_of_digit = next_num - 10
+            new_value += letters[index_of_digit]
+        else:
+            new_value += str(next_num)
+        number -= next_num * place
+    return new_value
+
+def encode_whole_number(number, base):
+    new_num_leng = whole_num_leng(number, base)
+    equivalent_value = get_equivalent_for_integers(number, base,
+                                                   new_num_leng)
+    return equivalent_value
+
 
 def encode(number, base):
-    """Encode given number in base 10 to digits in given base.
-    number: int -- integer representation of number (in base 10)
-    base: int -- base to convert to
-    return: str -- string representation of number (in given base)"""
-    # Handle up to base 36 [0-9a-z]
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
-    # Handle unsigned numbers only for now
     assert number >= 0, 'number is negative: {}'.format(number)
-    # TODO: Encode number in binary (base 2)
-    # ...
-    # TODO: Encode number in hexadecimal (base 16)
-    # ...
-    # TODO: Encode number in any base (2 up to 36)
-    # ...
+    encoded_num = ''
+    return encode_whole_number(number, base)
 
 
 def convert(digits, base1, base2):
-    """Convert given digits in base1 to digits in base2.
-    digits: str -- string representation of number (in base1)
-    base1: int -- base of given number
-    base2: int -- base to convert to
-    return: str -- string representation of number (in base2)"""
-    # Handle up to base 36 [0-9a-z]
+
     assert 2 <= base1 <= 36, 'base1 is out of range: {}'.format(base1)
     assert 2 <= base2 <= 36, 'base2 is out of range: {}'.format(base2)
-    # TODO: Convert digits from base 2 to base 16 (and vice versa)
-    # ...
-    # TODO: Convert digits from base 2 to base 10 (and vice versa)
-    # ...
-    # TODO: Convert digits from base 10 to base 16 (and vice versa)
-    # ...
-    # TODO: Convert digits from any base to any base (2 up to 36)
-    # ...
+
+    if base2 == 10:
+        return str(decode(digits, base1))
+    else:
+        if not base1 == 10:
+            digits = decode(digits, base1)
+        return encode(float(digits), base2)
 
 
 def main():
-    """Read command-line arguments and convert given digits between bases."""
-    # import sys
-    # args = sys.argv[1:]  # Ignore script file name
-    # if len(args) == 3:
-    #     digits = args[0]
-    #     base1 = int(args[1])
-    #     base2 = int(args[2])
-    #     # Convert given digits between bases
-    #     result = convert(digits, base1, base2)
-    #     print('{} in base {} is {} in base {}'.format(digits, base1, result, base2))
-    # else:
-    #     print('Usage: {} digits base1 base2'.format(sys.argv[0]))
-    #     print('Converts digits from base1 to base2')
-    print(decode(100101, 2))
+    import sys
+    args = sys.argv[1:]
+    if len(args) == 3:
+        digits = args[0]
+        base1 = int(args[1])
+        base2 = int(args[2])
+        result = convert(digits, base1, base2)
+        print('{} in base {} is {} in base {} (with sig figs)'.format(digits,
+                                                                      base1,
+                                                                      result,
+                                                                      base2))
+    else:
+        print('Usage: {} digits base1 base2'.format(sys.argv[0]))
+        print('Converts digits from base1 to base2')
+
 
 if __name__ == '__main__':
     main()
