@@ -47,7 +47,6 @@ def decode_from_any_base(digits, base, decoded):
             decoded += dec_for_whole_num(int_portion, base)
 
             digits = '0' + fractional
-
             return decode_from_any_base(digits, base, decoded)
         elif not fractional == '.0':
             decoded += dec_for_frac_num(digits, base)
