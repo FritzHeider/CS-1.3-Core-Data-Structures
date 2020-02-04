@@ -55,7 +55,6 @@ def decode_from_any_base(digits, base, decoded):
     else:
         return int(dec_for_whole_num(digits, base))
 
-
 def decode(digits, base):
 
     assert 2 <= base <= 36, 'base is unacceptable {}'.format(base)
