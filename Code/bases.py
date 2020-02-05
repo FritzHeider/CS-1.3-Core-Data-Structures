@@ -9,7 +9,6 @@ import math
 # string.ascii_uppercase is 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 # string.ascii_letters is ascii_lowercase + ascii_uppercase
 # string.printable is digits + ascii_letters + punctuation + whitespace
-
 def letter_to_num(digit):
     letters = list(string.ascii_lowercase)
     # checks if digit is a letter
@@ -20,8 +19,6 @@ def letter_to_num(digit):
     # if number is 0-9 return its value
     else:
         return float(digit)
-
-
 def dec_for_whole_num(digits, base):
     final_value = 0
     leng = len(digits)
