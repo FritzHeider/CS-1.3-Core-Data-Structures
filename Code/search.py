@@ -5,7 +5,6 @@ def linear_search(array, item):
     # return linear_search_iterative(array, item)
     return linear_search_recursive(array, item)
 
-
 def linear_search_iterative(array, item):
     '''TODO: Time complexity: O(n)'''
     # loop over all array values until item is found
