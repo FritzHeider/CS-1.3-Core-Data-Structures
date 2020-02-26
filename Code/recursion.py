@@ -21,7 +21,6 @@ def factorial_iterative(n):
             answer *= number
     return answer
 
-
 def factorial_recursive(n):
     # check if n is one of the base cases
     if n == 0 or n == 1:
