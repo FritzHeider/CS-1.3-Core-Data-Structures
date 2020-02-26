@@ -17,6 +17,10 @@ def is_palindrome(text):
     #return is_palindrome_recursive(text)
 
 def is_palindrome_iterative(text):
+    """ O(n)
+
+
+    """
     # TODO: implement the is_palindrome function iteratively here
     left = 0
     right = len(text) - 1
@@ -32,8 +36,12 @@ def is_palindrome_iterative(text):
     return True
     # once implemented, change is_palindrome to call is_palindrome_iterative
     # to verify that your iterative implementation passes all tests
-def is_palindrome_recursive(text, left=None, right=None):
-    #O(log(2)n)
+def is_palindrome_recursive(text, left=None, right=None
+""" O(n)
+
+
+"""
+
     # TODO: implement the is_palindrome function recursively here
 #if length is one or less return true
     if len(text) <= 1:

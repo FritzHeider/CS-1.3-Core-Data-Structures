@@ -66,7 +66,6 @@ class LinkedList(object):
     def length(self):
         """Return the length of this linked list by traversing its nodes.
         Best and worst case running time: O(n)"""
-
         count = 0
         #Begin with the head node
         node = self.head
@@ -81,8 +80,7 @@ class LinkedList(object):
     def get_at_index(self, index):
         """Return the item at the given index in this linked list, or
         raise ValueError if the given index is out of range of the list size.
-        Best case running time: O(1)
-        Worst case running time: O(n) """"
+        Best case running time: O(1)Worst case running time: O(n) """
         if not (0 <= index < self.size):
             raise ValueError('List index out of range: {}'.format(index))
 
