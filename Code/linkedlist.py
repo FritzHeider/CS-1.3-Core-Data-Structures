@@ -51,8 +51,7 @@ class LinkedList(object):
 
     def items(self):
         """Return a list of all items in this linked list.
-        Best and worst case running time: Theta(n) for n items in the list
-        because we always need to loop through all n nodes."""
+        Best and worst case running time: Theta(n) ."""
 
         result = []
         node = self.head
@@ -66,7 +65,7 @@ class LinkedList(object):
 
     def length(self):
         """Return the length of this linked list by traversing its nodes.
-        Best and worst case running time: O(n) in every case"""
+        Best and worst case running time: O(n)"""
 
         count = 0
         #Begin with the head node
@@ -82,8 +81,8 @@ class LinkedList(object):
     def get_at_index(self, index):
         """Return the item at the given index in this linked list, or
         raise ValueError if the given index is out of range of the list size.
-        Best case running time: O(1) where index is 0
-        Worst case running time: O(n) where index is n"""
+        Best case running time: O(1)
+        Worst case running time: O(n) """"
         if not (0 <= index < self.size):
             raise ValueError('List index out of range: {}'.format(index))
 
@@ -94,8 +93,8 @@ class LinkedList(object):
     def insert_at_index(self, index, item):
         """Insert the given item at the given index in this linked list, or
         raise ValueError if the given index is out of range of the list size.
-        Best case running time: O(1) if inserting at front
-        Worst case running time: O(n) if inserting at end"""
+        Best case running time: O(1)
+        Worst case running time: O(n) """
 
         if not (0 <= index <= self.size):
             raise ValueError('List index out of range: {}'.format(index))
@@ -151,9 +150,8 @@ class LinkedList(object):
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
-        Best case running time: Omega(1) if item is near the head of the list.
-        Worst case running time: O(n) if item is near the tail of the list or
-        not present and we need to loop through all n nodes in the list."""
+        Best case running time: Omega(1)
+        Worst case running time: O(n) """
         # set head node
         node = self.head
         while node is not None:
@@ -165,9 +163,8 @@ class LinkedList(object):
     def replace(self, old_item, new_item):
         """Replace the given old_item in this linked list with given new_item
         using the same node, or raise ValueError if old_item is not found.
-        Best case running time: O(1) if item is first node
-        Worst case running time: O(n) if last item or not in list because it
-            must traverse the whole list"""
+        Best case running time: O(1)
+        Worst case running time: O(n) """
         index = -1
         for i, node in enumerate(self):
             if node.data == old_item:
@@ -181,9 +178,8 @@ class LinkedList(object):
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
-        Best case running time: O(1) if item is at first node
-        Worst case running time: O(n) if item is last because must traverse
-            list"""
+        Best case running time: O(1) \\
+        Worst case running time: O(n) """
         node = self.head
         left = None
         found = False
