@@ -1,5 +1,9 @@
 def __repr__
 
+def __init__()
+
+class TreeSet
+
 def __str__(self):
     items = []
     for element in self.dict.keys():
@@ -14,6 +18,14 @@ def __add__(self, other):
 
 def __sub__(self, other):
     return self.difference(other)
+
+def contains2(self, item):
+
+    return self.tree.contains(item)
+
+def add2(self, item):
+    if not self.contains(item):
+        self.tree.insert(item)
 
 def containts(self, element):
     if element in self.dict:
@@ -47,7 +59,28 @@ def intersection(self, other_set):
             intersection.add(element)
     return intersection
 
+# def intersection2(self, other_set):
+#
+#     small = self.items
+#     large = other_set.items
+#     if small.size > large.size:
+#         small, large = large, small
+#     new_set = mySet()
+#     for item in small.keys():
+#         if large.contains(item):
+#             new_set.add(item)
+#     return new_set
+#
 
+
+def intersection3(self, other_set):
+    """ """
+    new_set = TreeSet()
+
+    for item in self:
+        if other_set.contains(item):
+            new_set.add(item)
+    return new_set
 
 
 def is_subset(self, other_set):
