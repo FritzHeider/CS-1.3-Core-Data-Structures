@@ -1,27 +1,69 @@
 #!python
 
+
+def start_new(text, pattern, index):
+    for letter in range(index, len(text) - len(pattern) + 1):
+        if text[letter] == pattern[0]:
+            return letter
+    return None
+
+def match(text, pattern, index):
+    for match in range(len(pattern)):
+        if text[index + match] != pattern[match]:
+            return False
+    return True
+
 def contains(text, pattern):
-    """Return a boolean indicating whether pattern occurs in text."""
+    """Return a boolean indicating whether pattern occurs in text.
+    best case O(1) worst case O(n)"""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-    # TODO: Implement contains here (iteratively and/or recursively)
+    if len(pattern) == 0:
+        return True
+    starter = start_new(text, pattern, 0)
+    while starter is not None:
+        if match(text, pattern, starter):
+            return True
+        starter = start_new(text, pattern, starter+1)
 
+    return False
 
 def find_index(text, pattern):
-    """Return the starting index of the first occurrence of pattern in text,
+    """Return the starting index of the first occurrence of pattern in text
+    best case O(n) worst case O(n),
     or None if not found."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # TODO: Implement find_index here (iteratively and/or recursively)
+    if len(pattern) == 0:
+        return 0
+    starter = start_new(text, pattern, 0)
+    while starter is not None:
+        if match(text, pattern, starter):
+            return starter
+        starter = start_new(text, pattern, starter+1)
+
 
 
 def find_all_indexes(text, pattern):
-    """Return a list of starting indexes of all occurrences of pattern in text,
+    """Return a list of starting indexes of all occurrences of pattern in text
+    best case O(n) worst case O(n),
     or an empty list if not found."""
     assert isinstance(text, str), 'text is not a string: {}'.format(text)
     assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
     # TODO: Implement find_all_indexes here (iteratively and/or recursively)
+    start_index = []
 
+    if len(pattern) == 0:
+        for starter in range(len(text)):
+            start_index.append(starter)
+    else:
+        starter = start_new(text, pattern, 0)
+        while starter is not None:
+            if match(text, pattern, starter):
+                start_index.append(starter)
+            starter = start_new(text, pattern, starter+1)
+    return start_index
 
 def test_string_algorithms(text, pattern):
     found = contains(text, pattern)
