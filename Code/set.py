@@ -37,6 +37,7 @@ def add(self, element):
     self.dict[element] = True
     self.size += 1
 
+    
 def remove(self, element):
     #   o(1)
     if self.contains(element):
