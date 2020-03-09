@@ -1,5 +1,3 @@
-#!python
-
 from linkedlist import LinkedList
 
 
@@ -20,21 +18,19 @@ class LinkedQueue(object):
         return 'Queue({} items, front={})'.format(self.length(), self.front())
 
     def is_empty(self):
-"""Return True if this queue is empty, or False otherwise."""
-#Quick check true if empty
+        """Return True if this queue is empty, or False otherwise."""
         if self.list.head is None:
             return True
         return False
 
     def length(self):
         """Return the number of items in this queue."""
-#.size for numbers
         return self.list.size
 
     def enqueue(self, item):
         """Insert the given item at the back of this queue.
-        Running time: O(1)"""
-        #append
+        Running time: O(1) – because it takes constant time to append to a
+        linked list with a tail pointer"""
         self.list.append(item)
 
     def front(self):
