@@ -1,105 +1,69 @@
-def __repr__
+from hashtable import HashTable
 
-def __init__()
+class HashIterator:
 
-class TreeSet
+   def __init__(self, hashset):
+       self._hashset = hashset
+       self._index = 0
 
-def __str__(self):
-    items = []
-    for element in self.dict.keys():
-        items.append(element)
-    return f'Set({items})'
+   def __next__(self):
+       if self._index < (len(self._hashset._keys)) :
+           if self._index < len(self._hashset._keys):
+               result = (self._hashset._keys[self._index])
+           self._index +=1
+           return result
+       raise StopIteration
 
-def __eq__(self, other):
-    return self.dict == other.dict
+class HashSet(object):
 
-def __add__(self, other):
-    return self.union(other)
+    def __init__(self, elements=None):
+        self.set = HashTable()
+        self.size
+        self._keys
+        if elements is not None:
+            for element in elements:
+                self.add(element)
+    @property
+    def size(self):
+        return self.set.size
 
-def __sub__(self, other):
-    return self.difference(other)
+    @property
+    def _keys(self):
+        return self.set.keys()
 
-def contains2(self, item):
+    def __iter__(self):
+        return HashIterator(self)
 
-    return self.tree.contains(item)
+    def contains(self, element):
+        return self.set.contains(element)
 
-def add2(self, item):
-    if not self.contains(item):
-        self.tree.insert(item)
+    def add(self, element):
+        self.set.set(element, None)
 
-def containts(self, element):
-    if element in self.dict:
+    def remove(self, element):
+        self.set.delete(element)
+
+    def union(self, other_set):
+        for element in other_set:
+            new_set.add(element)
+        return new_set
+
+    def intersection(self, other_set):
+        new_set = HashSet()
+        for element in self:
+            if other_set.contains(element):
+                new_set.add(element)
+        return new_set
+
+    def difference(self, other_set):
+        new_set = HashSet()
+        for element in self:
+            if not other_set.contains(element):
+                new_set.add(element)
+        return new_set
+
+    def is_subset(self, other_set):
+        for element in self:
+            if not other_set.contains(element):
+                return False
         return True
-    return False
-
-def add(self, element):
-#""""" 0(1)
-    self.dict[element] = True
-    self.size += 1
-
-    
-def remove(self, element):
-    #   o(1)
-    if self.contains(element):
-        del self.dict[element]
-        self.size -= 1
-
-def difference(self, other_set):
-
-    difference = self
-    for element in other_set.dict.ekys():
-        if difference.contains(element):
-            difference.removie(element)
-    return difference
-
-def intersection(self, other_set):
-###O(n) all the tiume
-    intersection = Set()
-    for element in self.dict.keys():
-        if other_set.contains(element):
-            intersection.add(element)
-    return intersection
-
-# def intersection2(self, other_set):
-#
-#     small = self.items
-#     large = other_set.items
-#     if small.size > large.size:
-#         small, large = large, small
-#     new_set = mySet()
-#     for item in small.keys():
-#         if large.contains(item):
-#             new_set.add(item)
-#     return new_set
-#
-
-
-def intersection3(self, other_set):
-    """ """
-    new_set = TreeSet()
-
-    for item in self:
-        if other_set.contains(item):
-            new_set.add(item)
-    return new_set
-
-
-def is_subset(self, other_set):
-#returns a bool if all the self elements in other set
-    for item in self.elements:
-        if item not in other_set.elements:
-            return False
-    return True
-
-
-def is_subset2(self, other_set):
-#"O(n)"
-    for element in other_set.dict.keys():
-        if not self.contains(element):
-            return False
-    return True
-
-
-if __name__ == "__main__":
-    set_one = Set(["A", "B", "C", "D"])
-    set_two = Set(["B", "C", "D", "E", "F", "G"])
